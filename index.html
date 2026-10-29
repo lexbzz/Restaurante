@@ -1,0 +1,293 @@
+<!--
+  ======================================================================
+  INSTITUCIÓN: CBTis 166 Pablo Torres Burgos
+  ----------------------------------------------------------------------
+  * Estudiante: Gaona Castro Eduardo Baltazar
+  * Grupo: 3B PRO VESP  
+  * Actividad: Práctica Temática sobre Formularios en HTML5
+  * Fecha de entrega: 21 de octubre de 2026
+  ----------------------------------------------------------------------
+  * Descripción técnica:
+    - Estructura modular (HTML5, CSS3 y JavaScript) con diseño responsivo (CSS Grid/Flexbox).
+    - Uso completo de etiquetas semánticas y variantes de inputs para formularios 
+    (<form>, <fieldset>, <legend>, <input>, <select>, etc.).
+    - Interactividad con JavaScript (envío, validación, asistente y vista previa 
+    dinámica mediante botones radio).
+  ====================================================================== -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Sabor y Tradición - Reservas y Mesas</title>
+    <!-- Vinculación de la hoja de estilos externa -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Etiqueta semántica <header>: Cabecera principal del sitio -->
+    <header>
+        <div class="header-content">
+            <h1>Restaurante Sabor y Tradición</h1>
+            <p>Sistema de Reservación de Mesas y Experiencias Gastronómicas</p>
+        </div>
+    </header>
+
+    <!-- Etiqueta semántica <nav>: Barra de navegación principal -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Etiqueta semántica <main>: Contenedor principal de contenido -->
+    <main id="inicio">
+        
+        <section class="form-section">
+            <h2 class="section-title">Formulario de Reservación de Mesa</h2>
+            <p class="section-desc">Complete el siguiente formulario para apartar su mesa, elegir preferencias culinarias y personalizar su visita.</p>
+      
+            <!-- 
+              ==================================================
+              ETIQUETA <form>: Contenedor raíz del formulario 
+              Atributos:
+              - action: Ruta o script del servidor que procesa los datos.
+              - method: Método HTTP (POST para envío seguro).
+              - enctype: Permite adjuntar archivos multimedia.
+              ================================================== 
+            -->
+            <form id="form-reserva" action="/procesar-reserva-restaurante" method="POST" enctype="multipart/form-data">
+
+                <!-- 
+                  ETIQUETA <fieldset>: Agrupa visual y lógicamente un bloque de campos.
+                  ETIQUETA <legend>: Título descriptivo para el fieldset.
+                  ETIQUETA <label>: Etiqueta de texto accesible conectada mediante el atributo 'for'.
+                  ETIQUETA <input>: Control interactivo de entrada cuyo comportamiento cambia con el 'type'.
+                -->
+                <fieldset>
+                    <legend>1. Información del Titular de la Reserva</legend>
+                    <div class="input-group">
+                        <label for="nombre-comensal">Nombre Completo:</label>
+                        <!-- type="text": Campo de texto plano. 'required' obliga a llenarlo -->
+                        <input type="text" id="nombre-comensal" name="nombre_comensal" 
+                         placeholder="Ej. Aranda Abundez Axel" required>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2. Detalles de Contacto y Comensales</legend>
+
+                    <div class="input-group">
+                        <label for="in-email">Correo Electrónico:</label>
+                        <!-- type="email": Valida automáticamente formato de correo con '@' -->
+                        <input type="email" id="in-email" name="correo" placeholder="persona@correo.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-password">Contraseña temporal para su cuenta:</label>
+                        <!-- type="password": Oculta los caracteres con asteriscos o puntos -->
+                        <input type="password" id="in-password" name="password" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-tel">Teléfono móvil de contacto:</label>
+                        <!-- type="tel": Optimiza el teclado numérico en dispositivos móviles -->
+                        <input type="tel" id="in-tel" name="telefono" placeholder="777-000-0000">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-url">Sitio web personal o redes sociales (Opcional):</label>
+                        <!-- type="url": Valida que la entrada comience con un protocolo web válido -->
+                        <input type="url" id="in-url" name="redes" placeholder="https://instagram.com/usuario">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-search">Buscar platillos o especialidades adicionales:</label>
+                        <!-- type="search": Campo optimizado para búsquedas -->
+                        <input type="search" id="in-search" name="busqueda_platillo" placeholder="Ej. Cortes finos, Pasta...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-number">Número de comensales (Personas):</label>
+                        <!-- type="number": Control numérico con límites min, max e incremento step -->
+                        <input type="number" id="in-number" name="comensales" min="1" max="15" value="2">
+                    </div>
+
+                    <div class="input-group checkbox-wrapper">
+                        <!-- type="checkbox": Casilla de verificación para selección múltiple -->
+                        <input type="checkbox" id="check1" name="estacionamiento" value="si">
+                        <label for="check1">Incluir servicio de valet parking</label>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Zona del Restaurante:</label><br>
+                        <!-- type="radio": Permite seleccionar una sola opción dentro del mismo grupo (name="zona") -->
+                        <input type="radio" id="r1" name="zona" value="interior"> <label for="r1">Salón Principal (Interior)</label> &nbsp;&nbsp;
+                        <!--checked sirve para que un boton de radio o casilla de verificación
+                        debe aparecer marcado por defecto cuando la página cargue por primera vez.-->
+                        <input type="radio" id="r2" name="zona" value="terraza" checked> <label for="r2">Terraza al Aire Libre</label>
+
+                        <!-- Contenedor visual para mostrar la imagen correspondiente -->
+                        <div class="preview-habitacion" style="margin-top: 15px;">
+                            <img id="imagen-habitacion" src="https://th.bing.com/th/id/OIP.OHDVsnYAAZLa7GaEol_jdQHaE8?w=253&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Vista previa de la zona" style="width: 100%; max-width: 400px; height: 220px; object-fit: cover; border-radius: 8px; border: 1px solid #cbd5e1;">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-date">Fecha de la reserva:</label>
+                        <!-- type="date": Despliega un calendario interactivo nativo -->
+                        <input type="date" id="in-date" name="fecha_reserva">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-time">Hora estimada de llegada:</label>
+                        <!-- type="time": Selector interactivo de hora -->
+                        <input type="time" id="in-time" name="hora_reserva">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-datetime">Fecha y hora exacta de festejo o evento:</label>
+                        <!-- type="datetime-local": Selector combinado de fecha y hora local -->
+                        <input type="datetime-local" id="in-datetime" name="evento_reserva">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-month">Mes preferido para futuras cenas especiales:</label>
+                        <!-- type="month": Selector exclusivo de mes y año -->
+                        <input type="month" id="in-month" name="mes_visita">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-week">Semana de celebración gastronómica:</label>
+                        <!-- type="week": Selector de semana del año -->
+                        <input type="week" id="in-week" name="semana_festival">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-color">Color distintivo para la decoración de su mesa (VIP):</label><br>
+                        <!-- type="color": Paleta de selección de colores en formato hexadecimal -->
+                        <input type="color" id="in-color" name="color_mesa" value="#f59e0b" style="width: 100px; height: 40px; padding: 2px;">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-range">Nivel de música ambiental deseado (1 al 10):</label>
+                        <!-- type="range": Barra deslizante (slider) numérica -->
+                        <input type="range" id="in-range" name="nivel_musica" min="1" max="10" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="in-file">Subir comprobante de membresía o beneficio (Opcional):</label>
+                        <!-- type="file": Permite la subida de archivos locales -->
+                        <input type="file" id="in-file" name="membresia">
+                    </div>
+
+                    <!-- type="hidden": Campo oculto para enviar datos técnicos al servidor sin que el usuario los modifique -->
+                    <input type="hidden" name="reserva_id" value="REST-2026-SAB-88">
+
+                    <div class="input-group">
+                        <label>Sello de garantía visual:</label><br>
+                        <!-- type="image": Botón de envío representado por una imagen gráfica -->
+                        <input type="image" src="https://picsum.photos/120/35" alt="Sello verificado" style="width: 120px; height: 35px;">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>3. Comentarios y Peticiones Especiales</legend>
+                    <div class="input-group">
+                        <label for="mi-textarea">Indique alergias, restricciones alimenticias o peticiones:</label>
+                        <!-- ETIQUETA <textarea>: Caja de edición de texto multilínea -->
+                        <textarea id="mi-textarea" name="observaciones" rows="4" placeholder="Escribe aquí si celebras algo especial o requieres menú vegetariano..."></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>4. Menús y Experiencias Opcionales</legend>
+
+                    <div class="input-group">
+                        <label for="mi-select">Seleccione su tipo de experiencia culinaria:</label>
+                        <!-- ETIQUETA <select>: Menú desplegable de opciones -->
+                        <select id="mi-select" name="paquete">
+                            <!-- ETIQUETA <optgroup>: Agrupa opciones relacionadas dentro del select -->
+                            <optgroup label="Cenas Románticas">
+                                <!-- ETIQUETA <option>: Opción individual del menú -->
+                                <option value="cena_romantica">Menú Degustación Parejas (Incluye vino)</option>
+                                <option value="aniversario">Paquete Aniversario (Postre especial)</option>
+                            </optgroup>
+                            <optgroup label="Menús Familiares">
+                                <option value="familiar" selected>Buffet Tradicional Fin de Semana</option>
+                                <option value="cortes">Festival de Cortes Finos y Asados</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="input-datalist">Bebida o coctel de cortesía preferido (Sugerencias):</label>
+                        <!-- ETIQUETA <input> asociada a un <datalist> mediante el atributo 'list' -->
+                        <input type="text" id="input-datalist" name="coctel" list="lista-bebidas" placeholder="Empieza a escribir...">
+                        <!-- ETIQUETA <datalist>: Proporciona opciones de autocompletado predictivo -->
+                        <datalist id="lista-bebidas">
+                            <option value="Margarita Tradicional de la Casa">
+                            <option value="Agua Fresca de Horchata Artesanal">
+                            <option value="Vino Tinto Reserva Especial">
+                            <option value="Limonada Mineral con Menta">
+                        </datalist>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>5. Estado de Ocupación y Capacidad</legend>
+
+                    <div class="input-group">
+                        <label>Ocupación actual del restaurante:</label>
+                        <!-- ETIQUETA <progress>: Muestra la barra de progreso de una tarea o capacidad -->
+                        <progress value="70" max="100" style="width: 100%; height: 20px;">70%</progress>
+                    </div><br>
+
+                    <div class="input-group">
+                        <label>Índice de satisfacción de los comensales:</label>
+                        <!-- ETIQUETA <meter>: Mide un valor escalar dentro de un rango conocido -->
+                        <meter value="0.95" min="0" low="0.4" high="0.7" optimum="0.95" style="width: 100%; height: 20px;">95%</meter>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>6. Confirmación de Operación</legend>
+
+                    <div class="input-group">
+                        <p style="margin-bottom: 8px;"><strong>Acciones del Sistema:</strong></p>
+                        <!-- ETIQUETA <button>: Botones de acción semánticos avanzados con type submit, reset y button -->
+                        <button type="submit" id="btn-enviar" class="btn btn-submit">Confirmar Reservación</button>
+                        <button type="reset" id="btn-limpiar" class="btn btn-reset">Borrar Datos</button>
+                        <button type="button" id="btn-asistente" class="btn btn-action">Consultar Sommelier</button>
+                    </div>
+                </fieldset>
+
+            </form>
+        </section>
+
+        <!-- Etiqueta semántica <aside>: Barra lateral de información secundaria -->
+        <aside>
+            <h3>Centro de Atención</h3>
+            <p><strong>Restaurante Sabor y Tradición:</strong></p>
+            <p>Reservaciones y Eventos</p>
+            <p><strong>Teléfono:</strong></p>
+            <p>+52 (734) 555-0199</p> 
+            <br>
+            <p>Consulte nuestras políticas de tolerancia de espera y códigos de vestimenta vigentes.</p>
+        </aside>
+    </main>
+
+    <!-- Etiqueta semántica <footer>: Pie de página con información de contacto y <address> -->
+    <footer id="contacto">
+        <p>&copy; 2026 Restaurante Sabor y Tradición. Todos los derechos reservados.</p>
+        <address>
+            ¿Necesita asistencia especial con su mesa? Contáctenos en <a href="mailto:reservas@saborytradicion.com">reservas@saborytradicion.com</a>
+        </address>
+    </footer>
+
+    <!-- Vinculación del script de interactividad -->
+    <script src="script.js"></script>
+</body>
+</html>

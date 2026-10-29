@@ -1,0 +1,257 @@
+/* ======================================================================
+   ESTILOS CORPORATIVOS - RESTAURANTE SABOR Y TRADICIÓN (ESTILO GOURMET / RÚSTICO)
+   ====================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdfbf7; /* Fondo cálido tipo lino / papel amigable */
+    color: #2c241d;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilo de la cabecera con tonos cálidos de restaurante (terracota / marrón / ámbar) */
+header {
+    background: linear-gradient(135deg, rgba(146, 64, 14, 0.85), rgba(180, 83, 9, 0.8)), 
+                url('img/restaurante.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 3.5rem 1rem;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+/* Barra de navegación fija (sticky) en tonos terracota */
+nav {
+    background-color: #92400e;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    display: block;
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #b45309;
+}
+
+/* Estructura general de columnas con CSS Grid */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-section {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(44, 36, 29, 0.08);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #92400e;
+    margin-bottom: 0.5rem;
+    border-bottom: 3px solid #d97706;
+    padding-bottom: 0.5rem;
+}
+
+.section-desc {
+    color: #57534e;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+/* Estilos de los contenedores fieldset y sus títulos legend en tonos terracota/ámbar */
+fieldset {
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 2px solid #92400e;
+    border-radius: 6px;
+    background-color: #fffaf5;
+}
+
+legend {
+    font-weight: bold;
+    background-color: #92400e;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #2c241d;
+}
+
+/* Estilos unificados para todos los controles del formulario con ancho controlado */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="color"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    max-width: 450px;
+    padding: 10px 12px;
+    margin-top: 4px;
+    border: 1px solid #d6d3d1;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #92400e;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.15);
+}
+
+input[type="checkbox"], input[type="radio"] {
+    width: auto;
+    margin-right: 6px;
+}
+
+/* Estilos de botones de acción */
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-submit {
+    background-color: #d97706;
+    color: white;
+}
+.btn-submit:hover {
+    background-color: #b45309;
+}
+
+.btn-reset {
+    background-color: #dc2626;
+    color: white;
+}
+.btn-reset:hover {
+    background-color: #b91c1c;
+}
+
+.btn-action {
+    background-color: #0284c7;
+    color: white;
+}
+.btn-action:hover {
+    background-color: #0369a1;
+}
+
+/* Barra lateral y pie de página */
+aside {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(44, 36, 29, 0.05);
+    height: fit-content;
+}
+
+aside h3 {
+    color: #92400e;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #f5f5f4;
+    padding-bottom: 0.5rem;
+}
+
+footer {
+    background-color: #1c1917;
+    color: #d6d3d1;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;
+}
+
+footer address {
+    font-style: normal;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+footer address a {
+    color: #fbbf24;
+    text-decoration: none;
+}
